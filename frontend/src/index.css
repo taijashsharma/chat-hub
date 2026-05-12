@@ -1,0 +1,259 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* =========================
+   THEME CONFIG
+========================= */
+
+@theme inline {
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* chat UI tokens */
+
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-panel-bg: var(--panel-bg);
+
+  --color-hover-bg: var(--hover-bg);
+  --color-active-bg: var(--active-bg);
+
+  --color-muted-2: var(--muted-2);
+  --color-divider: var(--divider);
+
+  --shadow-floating: var(--shadow-floating);
+  --shadow-card: var(--shadow-card);
+
+  --animate-fade-in: fade-in 0.4s ease-out;
+  --animate-slide-in-left: slide-in-left 0.28s cubic-bezier(0.22,1,0.36,1);
+  --animate-scale-in: scale-in 0.2s ease-out;
+}
+
+
+/* =========================
+   LIGHT THEME
+========================= */
+
+:root {
+
+  --radius: 0.875rem;
+
+  --background: oklch(0.984 0.003 247.858);
+  --foreground: oklch(0.208 0.042 265.755);
+
+  --card: oklch(1 0 0);
+
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+
+  --secondary: oklch(0.968 0.007 247.896);
+
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+
+  --accent: oklch(0.929 0.013 255.508);
+
+  --border: oklch(0.929 0.013 255.508);
+
+  /* chat layout */
+
+  --sidebar-bg: oklch(0.961 0.009 247.896);
+  --panel-bg: oklch(0.968 0.007 247.896);
+
+  --hover-bg: oklch(0.968 0.007 247.896);
+  --active-bg: oklch(0.929 0.013 255.508);
+
+  --muted-2: oklch(0.792 0.024 257.417);
+
+  --divider: oklch(0.929 0.013 255.508);
+
+  --shadow-floating:
+    0 20px 60px -20px oklch(0.208 0.042 265.755 / 0.18),
+    0 4px 12px -4px oklch(0.208 0.042 265.755 / 0.06);
+
+  --shadow-card:
+    0 1px 2px oklch(0.208 0.042 265.755 / 0.04),
+    0 4px 16px -4px oklch(0.208 0.042 265.755 / 0.06);
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark {
+
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+
+  --card: oklch(0.208 0.042 265.755);
+
+  --secondary: oklch(0.279 0.041 260.031);
+  --muted: oklch(0.279 0.041 260.031);
+
+  --sidebar-bg: oklch(0.208 0.042 265.755);
+  --panel-bg: oklch(0.208 0.042 265.755);
+
+  --hover-bg: oklch(0.279 0.041 260.031);
+  --active-bg: oklch(0.279 0.041 260.031);
+
+  --divider: oklch(1 0 0 / 10%);
+
+}
+
+
+/* =========================
+   BASE STYLES
+========================= */
+
+@layer base {
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+
+    color: var(--color-foreground);
+
+    /* PREMIUM SILVER BACKGROUND */
+
+    background:
+
+      radial-gradient(1200px 600px at 15% -10%, #ffffff 0%, transparent 60%),
+
+      radial-gradient(900px 500px at 100% 110%, #e2e8f0 0%, transparent 55%),
+
+      linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+
+    background-attachment: fixed;
+
+    -webkit-font-smoothing: antialiased;
+
+  }
+
+
+  /* DOT PATTERN OVERLAY */
+
+  body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+
+      radial-gradient(circle at 1px 1px,
+      rgba(15, 23, 42, 0.025) 1px,
+      transparent 0);
+
+    background-size: 22px 22px;
+
+    mask-image:
+      radial-gradient(ellipse at center,
+      black 40%,
+      transparent 80%);
+
+    z-index: 0;
+
+  }
+
+
+  /* SCROLLBAR */
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+
+    background: oklch(0.879 0.014 255.508);
+
+    border-radius: 999px;
+
+  }
+
+}
+
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fade-in {
+
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes slide-in-left {
+
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+}
+
+@keyframes scale-in {
+
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
